@@ -37,10 +37,11 @@ class Enemy {
     this.x = -100;
     this.y = y;
     this.sprite = 'images/enemy-bug.png';
+    this.speed = Math.floor((Math.random() *300) +70);
   }
 
   update(dt) {
-    this.x += 70* dt;
+    this.x += this.speed * dt;
   }
 
   render() {
