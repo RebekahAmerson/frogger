@@ -36,7 +36,6 @@ class Enemy {
   constructor () {
     const rows = [60, 143, 226];
     this.x = -100;
-    // this.x = 505;
     this.y = rows[Math.floor(Math.random() * rows.length)];;
     this.sprite = 'images/enemy-bug.png';
     this.speed = Math.floor((Math.random() *300) +70);
@@ -66,6 +65,15 @@ class Player {
   }
 
   update() {
+    for (const bug of allEnemies) {
+      if (player.y +17 === bug.y) {
+        console.log('player.x is ' +player.x +'and bug.x is ' +Math.floor(bug.x));
+        if((player.x - bug.x <= 70) && (player.x - bug.x >= -74)){
+          console.log('OOOOPS!')
+          player.y = 375;
+        }
+      }
+    }
   }
 
   render() {
