@@ -36,6 +36,7 @@ class Enemy {
   constructor () {
     const rows = [60, 143, 226];
     this.x = -100;
+    // this.x = 505;
     this.y = rows[Math.floor(Math.random() * rows.length)];;
     this.sprite = 'images/enemy-bug.png';
     this.speed = Math.floor((Math.random() *300) +70);
@@ -43,6 +44,13 @@ class Enemy {
 
   update(dt) {
     this.x += this.speed * dt;
+
+    if (this.x >= 505) {
+      const rows = [60, 143, 226];
+      this.x = -100;
+      this.y = rows[Math.floor(Math.random() * rows.length)];;
+      this.speed = Math.floor((Math.random() *300) +70);
+    }
   }
 
   render() {
