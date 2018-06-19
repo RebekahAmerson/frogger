@@ -30,7 +30,7 @@
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-//Start my code. TODO reorgainize later.
+//Start my code. TODO reorgainize later. TODO remove console.logs.
 
 class Enemy {
   constructor (x, y) {
@@ -57,16 +57,38 @@ class Player {
   }
 
   update() {
-    console.log("update");
   }
 
   render() {
-    console.log('render');
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   }
 
-  handleInput(){
+  handleInput(key){
+    console.log (key);
     console.log('handle input');
+    console.log (this.x, this.y);
+
+    if ((key === 'up') && (this.y >= 43)) {
+      this.y -= 83;
+
+      if (this.y <= 0){
+        console.log('You won!');
+        this.y = 375;
+      }
+    }
+
+    if ((key === 'down') && (this.y <= 292)) {
+      this.y += 83;
+    }
+
+    if ((key === 'left') && (this.x >=101)) {
+      this.x -= 101;
+    }
+
+    if ((key === 'right') &&(this.x <= 303)) {
+      this.x += 101;
+    }
+    console.log(this.x, this.y);
   }
 }
 
