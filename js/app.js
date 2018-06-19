@@ -99,7 +99,9 @@ const player = new Player();
 
 //Enemies
 const bug1 = new Enemy();
-allEnemies.push(bug1);
+const bug2 = new Enemy();
+const bug3 = new Enemy();
+allEnemies.push(bug1, bug2, bug3);
 
 
 
