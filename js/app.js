@@ -33,9 +33,10 @@
 //Start my code. TODO reorgainize later. TODO remove console.logs.
 
 class Enemy {
-  constructor (y) {
+  constructor () {
+    const rows = [60, 143, 226];
     this.x = -100;
-    this.y = y;
+    this.y = rows[Math.floor(Math.random() * rows.length)];;
     this.sprite = 'images/enemy-bug.png';
     this.speed = Math.floor((Math.random() *300) +70);
   }
@@ -97,7 +98,7 @@ let allEnemies = [];
 const player = new Player();
 
 //Enemies
-const bug1 = new Enemy(226);
+const bug1 = new Enemy();
 allEnemies.push(bug1);
 
 
