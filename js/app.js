@@ -33,18 +33,17 @@
 //Start my code. TODO reorgainize later. TODO remove console.logs.
 
 class Enemy {
-  constructor (x, y) {
-    this.x = x;
+  constructor (y) {
+    this.x = -100;
     this.y = y;
     this.sprite = 'images/enemy-bug.png';
   }
 
   update(dt) {
-    console.log("update");
+    this.x += 70* dt;
   }
 
   render() {
-    console.log('render');
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   }
 }
@@ -63,6 +62,7 @@ class Player {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   }
 
+//Changes player position depending on which key is pressed.
   handleInput(key){
     console.log (key);
     console.log('handle input');
@@ -93,7 +93,12 @@ class Player {
 }
 
 let allEnemies = [];
-let player = new Player();
+const player = new Player();
+
+//Enemies
+const bug1 = new Enemy(226);
+allEnemies.push(bug1);
+
 
 
 // This listens for key presses and sends the keys to your
