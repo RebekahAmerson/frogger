@@ -68,7 +68,7 @@ class Player {
     for (const bug of allEnemies) {
       if (player.y +17 === bug.y) {
         console.log('player.x is ' +player.x +'and bug.x is ' +Math.floor(bug.x));
-        if((player.x - bug.x <= 70) && (player.x - bug.x >= -74)){
+        if((player.x - bug.x <= 50) && (player.x - bug.x >= -74)){
           console.log('OOOOPS!')
           player.y = 375;
         }
