@@ -69,6 +69,10 @@ class Player {
     for (const bug of allEnemies) {
       if ((this.y +17 === bug.y) && (this.x - bug.x <= 50) && (this.x - bug.x >= -74)) {
         this.restart();
+        document.getElementById('lose-game').addEventListener('click', function() {
+          document.getElementById('modal').classList.add('closed');
+          document.getElementById('modal-lose').classList.replace('open', 'closed');
+        });
         document.getElementById('modal').classList.remove('closed');
         document.getElementById('modal-lose').classList.replace('closed', 'open');
       }
@@ -91,6 +95,10 @@ class Player {
 
       if (this.y <= 0){  //if reached the water, open win modal.
         this.restart();
+        document.getElementById('win-game').addEventListener('click', function() {
+          document.getElementById('modal').classList.add('closed');
+          document.getElementById('modal-win').classList.replace('open', 'closed');
+        });
         document.getElementById('modal').classList.remove('closed');
         document.getElementById('modal-win').classList.replace('closed', 'open');
       }
