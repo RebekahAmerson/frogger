@@ -68,16 +68,20 @@ class Player {
   update() {
     for (const bug of allEnemies) {
       if ((this.y +17 === bug.y) && (this.x - bug.x <= 50) && (this.x - bug.x >= -74)) {
-          this.y = 375;
-          this.x = 202;
-          document.getElementById('modal').classList.remove('closed');
-          document.getElementById('modal-lose').classList.replace('closed', 'open');
-        }
+        this.restart();
+        document.getElementById('modal').classList.remove('closed');
+        document.getElementById('modal-lose').classList.replace('closed', 'open');
       }
     }
-
+  }
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+  }
+
+//Resets player position to start.
+  restart() {
+    this.x = 202;
+    this.y = 375;
   }
 
 //Changes player position depending on which key is pressed.
@@ -86,8 +90,7 @@ class Player {
       this.y -= 83;
 
       if (this.y <= 0){  //if reached the water, open win modal.
-        this.y = 375;
-        this.x = 202;
+        this.restart();
         document.getElementById('modal').classList.remove('closed');
         document.getElementById('modal-win').classList.replace('closed', 'open');
       }
