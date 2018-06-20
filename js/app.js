@@ -30,7 +30,7 @@
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-//Start my code. TODO reorgainize later. TODO remove console.logs.
+//Start my code. TODO reorgainize later.
 
 class Enemy {
   constructor () {
@@ -64,17 +64,17 @@ class Player {
     this.sprite = 'images/char-boy.png';
   }
 
+//Cycles through allEnemies array and compares coordinates to determine collision.
   update() {
     for (const bug of allEnemies) {
-      if (player.y +17 === bug.y) {
-        console.log('player.x is ' +player.x +'and bug.x is ' +Math.floor(bug.x));
-        if((player.x - bug.x <= 50) && (player.x - bug.x >= -74)){
-          console.log('OOOOPS!')
-          player.y = 375;
+      if ((this.y +17 === bug.y) && (this.x - bug.x <= 50) && (this.x - bug.x >= -74)) {
+          this.y = 375;
+          this.x = 202;
+          document.getElementById('modal').classList.remove('closed');
+          document.getElementById('modal-lose').classList.replace('closed', 'open');
         }
       }
     }
-  }
 
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -82,16 +82,14 @@ class Player {
 
 //Changes player position depending on which key is pressed.
   handleInput(key){
-    console.log (key);
-    console.log('handle input');
-    console.log (this.x, this.y);
-
     if ((key === 'up') && (this.y >= 43)) {
       this.y -= 83;
 
-      if (this.y <= 0){
-        console.log('You won!');
+      if (this.y <= 0){  //if reached the water, open win modal.
         this.y = 375;
+        this.x = 202;
+        document.getElementById('modal').classList.remove('closed');
+        document.getElementById('modal-win').classList.replace('closed', 'open');
       }
     }
 
@@ -106,7 +104,6 @@ class Player {
     if ((key === 'right') &&(this.x <= 303)) {
       this.x += 101;
     }
-    console.log(this.x, this.y);
   }
 }
 
