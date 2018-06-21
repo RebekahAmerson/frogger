@@ -40,6 +40,7 @@ class Player {
         document.getElementById('lose-game').addEventListener('click', function() {
           document.getElementById('modal').classList.add('closed');
           document.getElementById('modal-lose').classList.replace('open', 'closed');
+          gem = new Gem();
         });
         document.getElementById('modal').classList.remove('closed');
         document.getElementById('modal-lose').classList.replace('closed', 'open');
@@ -55,6 +56,7 @@ class Player {
   restart() {
     this.x = 202;
     this.y = 375;
+    gem = "";
   }
 
 //Changes player position depending on which key is pressed.
@@ -67,6 +69,7 @@ class Player {
         document.getElementById('win-game').addEventListener('click', function() {
           document.getElementById('modal').classList.add('closed');
           document.getElementById('modal-win').classList.replace('open', 'closed');
+          gem = new Gem();
         });
         document.getElementById('modal').classList.remove('closed');
         document.getElementById('modal-win').classList.replace('closed', 'open');
@@ -89,8 +92,8 @@ class Player {
 
 class Gem {
   constructor() {
-  const rows = [60, 143, 226];
-  const columns = [0, 101, 202, 303, 404]
+  const rows = [115, 198, 281];
+  const columns = [25, 126, 227, 328, 429]
   const gems = ['images/gem-blue.png', 'images/gem-green.png', 'images/gem-orange.png'];
   this.y = rows[Math.floor(Math.random() * rows.length)];
   this.x = columns[Math.floor(Math.random() * columns.length)];
@@ -99,7 +102,6 @@ class Gem {
 
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    console.log(this.x, this.y)
   }
 
 }
