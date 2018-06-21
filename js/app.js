@@ -35,7 +35,7 @@ class Player {
 //Cycles through allEnemies array and compares coordinates to determine collision.
   update() {
     for (const bug of allEnemies) {
-      if ((this.y +17 === bug.y) && (this.x - bug.x <= 50) && (this.x - bug.x >= -74)) {
+      if ((this.y + 17 === bug.y) && (this.x - bug.x <= 50) && (this.x - bug.x >= -74)) {
         this.restart();
         document.getElementById('lose-game').addEventListener('click', function() {
           document.getElementById('modal').classList.add('closed');
@@ -45,6 +45,9 @@ class Player {
         document.getElementById('modal').classList.remove('closed');
         document.getElementById('modal-lose').classList.replace('closed', 'open');
       }
+    }
+    if ((this.y + 72 === gem.y) && (this.x + 25 === gem.x)) {
+      gem = '';
     }
   }
 
@@ -56,7 +59,7 @@ class Player {
   restart() {
     this.x = 202;
     this.y = 375;
-    gem = "";
+    gem = '';
   }
 
 //Changes player position depending on which key is pressed.
@@ -87,17 +90,18 @@ class Player {
     if ((key === 'right') &&(this.x <= 303)) {
       this.x += 101;
     }
+    console.log(this.x);
   }
 }
 
 class Gem {
   constructor() {
-  const rows = [115, 198, 281];
-  const columns = [25, 126, 227, 328, 429]
-  const gems = ['images/gem-blue.png', 'images/gem-green.png', 'images/gem-orange.png'];
-  this.y = rows[Math.floor(Math.random() * rows.length)];
-  this.x = columns[Math.floor(Math.random() * columns.length)];
-  this.sprite = gems[Math.floor(Math.random() * gems.length)];
+    const rows = [115, 198, 281];
+    const columns = [25, 126, 227, 328, 429]
+    const gems = ['images/gem-blue.png', 'images/gem-green.png', 'images/gem-orange.png'];
+    this.y = rows[Math.floor(Math.random() * rows.length)];
+    this.x = columns[Math.floor(Math.random() * columns.length)];
+    this.sprite = gems[Math.floor(Math.random() * gems.length)];
   }
 
   render() {
