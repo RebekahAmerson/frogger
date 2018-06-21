@@ -68,6 +68,9 @@ class Player {
       this.y -= 83;
 
       if (this.y <= 0){  //if reached the water, open win modal.
+        score +=100;
+        updateScore();
+        console.log(score);
         this.restart();
         document.getElementById('win-game').addEventListener('click', function() {
           document.getElementById('modal').classList.add('closed');
@@ -106,12 +109,16 @@ class Gem {
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   }
+}
 
+function updateScore() {
+  document.getElementById('score').innerHTML = score;
 }
 
 let allEnemies = [];
 const player = new Player();
 let gem = new Gem();
+let score = 0;
 
 //Enemies
 const bug1 = new Enemy();
