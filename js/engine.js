@@ -13,6 +13,10 @@
  * writing app.js a little simpler to work with.
  */
 
+ // document.getElementById('start-game').addEventListener('click', function() {
+ //   console.log('event listener');
+ // })
+
 var Engine = (function(global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
@@ -63,7 +67,6 @@ var Engine = (function(global) {
      * game loop.
      */
     function init() {
-        console.log('start of game');
         reset();
         lastTime = Date.now();
         main();
@@ -181,7 +184,13 @@ var Engine = (function(global) {
         'images/char-princess-girl.png'
         ]);
 
-    Resources.onReady(init);
+//On click of button, starts the game and closes opening modal. Resets player image to chosen image.
+    document.getElementById('start-game').addEventListener('click', function() {
+      init();
+      player.sprite = document.querySelector('input[type = radio]:checked').value;
+      document.getElementById('modal').classList.add('closed');
+      document.getElementById('modal-start').classList.replace('open', 'closed');
+    })
 
     /* Assign the canvas' context object to the global variable (the window
      * object when run in a browser) so that developers can use it more easily

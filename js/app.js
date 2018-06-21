@@ -95,8 +95,6 @@ const bug2 = new Enemy();
 const bug3 = new Enemy();
 allEnemies.push(bug1, bug2, bug3);
 
-
-
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {

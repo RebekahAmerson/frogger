@@ -7,17 +7,12 @@
     <link href="https://fonts.googleapis.com/css?family=Orbitron:500" rel="stylesheet">
 </head>
 <body>
-    <script src="js/resources.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/engine.js"></script>
-
-    <!-- <div id = "modal" class = "closed"> -->
     <div id = "modal">
       <div id = "modal-background"></div>
       <div id = "modal-start" class = "open">
         Choose Your Player<br>
         <label id = "char-boy">
-          <input type="radio" name = "char" value = "images/char-boy.png">
+          <input type="radio" name = "char" value = "images/char-boy.png" checked>
           <img src = "images/char-boy.png">
         </label>
         <label id = "char-cat-girl">
@@ -47,5 +42,9 @@
         <button id = "lose-game">Try Again?</button>
       </div>
     </div>
+
+    <script src="js/resources.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/engine.js"></script>
 </body>
 </html>
