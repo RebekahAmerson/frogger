@@ -39,10 +39,10 @@ class Player {
         this.restart();
         score = 0;
         updateScore();
+        gem = new Gem();
         document.getElementById('lose-game').addEventListener('click', function() {
           document.getElementById('modal').classList.add('closed');
           document.getElementById('modal-lose').classList.replace('open', 'closed');
-          gem = new Gem();
         });
         document.getElementById('modal').classList.remove('closed');
         document.getElementById('modal-lose').classList.replace('closed', 'open');
@@ -74,10 +74,10 @@ class Player {
         updateScore();
         console.log(score);
         this.restart();
+        gem = new Gem();
         document.getElementById('win-game').addEventListener('click', function() {
           document.getElementById('modal').classList.add('closed');
           document.getElementById('modal-win').classList.replace('open', 'closed');
-          gem = new Gem();
         });
         document.getElementById('modal').classList.remove('closed');
         document.getElementById('modal-win').classList.replace('closed', 'open');

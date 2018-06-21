@@ -5,12 +5,14 @@ body {
 
 #hud {
   /* background: yellow; */
+  text-align: left;
   color: white;
   z-index: 1;
-  width: 10%;
+  width: 505px;
   position: absolute;
   top: 11%;
-  left: 29%;
+  left: 50%;
+  transform: translate(-49%, 0%);
 }
 
 #modal {
