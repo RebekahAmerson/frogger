@@ -37,6 +37,8 @@ class Player {
     for (const bug of allEnemies) {
       if ((this.y + 17 === bug.y) && (this.x - bug.x <= 50) && (this.x - bug.x >= -74)) {
         this.restart();
+        score = 0;
+        updateScore();
         document.getElementById('lose-game').addEventListener('click', function() {
           document.getElementById('modal').classList.add('closed');
           document.getElementById('modal-lose').classList.replace('open', 'closed');
