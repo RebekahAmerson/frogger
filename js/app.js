@@ -90,7 +90,6 @@ class Player {
     if ((key === 'right') &&(this.x <= 303)) {
       this.x += 101;
     }
-    console.log(this.x);
   }
 }
 
