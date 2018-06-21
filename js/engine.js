@@ -63,6 +63,7 @@ var Engine = (function(global) {
      * game loop.
      */
     function init() {
+        console.log('start of game');
         reset();
         lastTime = Date.now();
         main();
@@ -173,8 +174,13 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
-    ]);
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png'
+        ]);
+
     Resources.onReady(init);
 
     /* Assign the canvas' context object to the global variable (the window
