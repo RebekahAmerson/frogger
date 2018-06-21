@@ -51,6 +51,7 @@ var Engine = (function(global) {
         update(dt);
         render();
 
+
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
          */
@@ -158,6 +159,10 @@ var Engine = (function(global) {
         });
 
         player.render();
+
+        if (gem) {
+        gem.render();
+        };
     }
 
     /* This function does nothing but it could have been a good place to
@@ -181,7 +186,10 @@ var Engine = (function(global) {
         'images/char-cat-girl.png',
         'images/char-horn-girl.png',
         'images/char-pink-girl.png',
-        'images/char-princess-girl.png'
+        'images/char-princess-girl.png',
+        'images/gem-blue.png',
+        'images/gem-green.png',
+        'images/gem-orange.png'
         ]);
 
 //On click of button, starts the game and closes opening modal. Resets player image to chosen image.
