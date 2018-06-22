@@ -1,5 +1,3 @@
-//Start my code. TODO reorgainize later.
-
 class Enemy {
   constructor() {
     const rows = [60, 143, 226];
@@ -79,8 +77,8 @@ class Player {
       document.getElementById('modal').classList.remove('closed');
       document.getElementById('modal-game-over').classList.replace('closed', 'open');
       document.getElementById('game-over').addEventListener('click', function() {
-        document.getElementById('modal').classList.add('closed');
-        document.getElementById('modal-win').classList.replace('open', 'closed');
+        document.getElementById('modal-game-over').classList.replace('open', 'closed');
+        document.getElementById('modal-start').classList.replace('closed', 'open');
       });
       lives = 3;
       this.updateLives();
