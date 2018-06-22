@@ -4,7 +4,6 @@ body {
 }
 
 #hud {
-  /* background: yellow; */
   text-align: left;
   color: white;
   z-index: 1;
