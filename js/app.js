@@ -14,7 +14,16 @@ class Enemy {
       const rows = [60, 143, 226];
       this.x = -100;
       this.y = rows[Math.floor(Math.random() * rows.length)];
-      this.speed = Math.floor((Math.random() *300) +70);
+
+      if (level < 5) {
+        this.speed = Math.floor((Math.random() *300) +70);
+        console.log(this.speed +'slower');
+      }
+
+      if (level >= 5) {
+        this.speed = Math.floor((Math.random() *350) +90);
+        console.log(this.speed +'faster');
+      }
     }
   }
 
