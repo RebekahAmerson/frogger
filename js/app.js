@@ -128,6 +128,8 @@ class Player {
       if (this.y <= 0){  //if reached the water, open win modal.
         score += 100;
         this.updateScore();
+        level += 1;
+        console.log(level);
         this.restart();
         gem = new Gem();
         document.getElementById('modal').classList.remove('closed');
@@ -173,6 +175,7 @@ const player = new Player();
 let gem = new Gem();
 let score = 0;
 let lives = 3;
+let level = 1;
 
 //Enemies
 const bug1 = new Enemy();
