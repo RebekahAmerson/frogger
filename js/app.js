@@ -82,6 +82,8 @@ class Player {
       });
       lives = 3;
       this.updateLives();
+      level = 1;
+      this.updateLevel();
     }
   }
 
