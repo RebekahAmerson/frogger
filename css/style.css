@@ -15,6 +15,19 @@ body {
   transform: translate(-49%, 0%);
 }
 
+#lives {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.heart {
+  display: inline-block;
+  transform: scale(.45) translate(40%, -75%);
+  padding: 0;
+  margin-left: -5%;
+}
+
 #modal {
   font-size: 2.5em;
 }
@@ -24,6 +37,7 @@ body {
 }
 
 #modal-background {
+  z-index: 2;
   position: fixed;
   top: 0;
   left: 0;

@@ -37,15 +37,8 @@ class Player {
     for (const bug of allEnemies) {
       if ((this.y + 17 === bug.y) && (this.x - bug.x <= 50) && (this.x - bug.x >= -74)) {
         this.restart();
-        score = 0;
-        updateScore();
+        this.bugHit();
         gem = new Gem();
-        document.getElementById('lose-game').addEventListener('click', function() {
-          document.getElementById('modal').classList.add('closed');
-          document.getElementById('modal-lose').classList.replace('open', 'closed');
-        });
-        document.getElementById('modal').classList.remove('closed');
-        document.getElementById('modal-lose').classList.replace('closed', 'open');
       }
     }
     if ((this.y + 72 === gem.y) && (this.x + 25 === gem.x)) {
@@ -64,6 +57,42 @@ class Player {
     gem = '';
   }
 
+//Opens modal dependant on how many lives are left.
+  bugHit() {
+    lives -= 1;
+    this.updateLives();
+
+    if (lives > 0) {
+      document.getElementById('modal').classList.remove('closed');
+      document.getElementById('modal-lose').classList.replace('closed', 'open');
+      document.getElementById('lose-game').addEventListener('click', function() {
+        document.getElementById('modal').classList.add('closed');
+        document.getElementById('modal-lose').classList.replace('open', 'closed');
+      });
+    }
+
+    if (lives === 0) {
+      score = 0;
+      updateScore();
+    }
+  }
+
+//Updates the HUD display of lives.
+  updateLives() {
+    if (lives === 3) {
+      document.querySelectorAll('.heart')[2].classList.remove('closed');
+    }
+
+    if (lives === 2) {
+      document.querySelectorAll('.heart')[1].classList.remove('closed');
+      document.querySelectorAll('.heart')[2].classList.add('closed');
+    }
+
+    if (lives === 1) {
+      document.querySelectorAll('.heart')[1].classList.add('closed');
+    }
+  }
+
 //Changes player position depending on which key is pressed.
   handleInput(key){
     if ((key === 'up') && (this.y >= 43)) {
@@ -72,7 +101,6 @@ class Player {
       if (this.y <= 0){  //if reached the water, open win modal.
         score +=100;
         updateScore();
-        console.log(score);
         this.restart();
         gem = new Gem();
         document.getElementById('win-game').addEventListener('click', function() {
@@ -121,6 +149,7 @@ let allEnemies = [];
 const player = new Player();
 let gem = new Gem();
 let score = 0;
+let lives = 3;
 
 //Enemies
 const bug1 = new Enemy();
