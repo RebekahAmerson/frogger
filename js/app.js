@@ -42,7 +42,10 @@ class Player {
       }
     }
     if ((this.y + 72 === gem.y) && (this.x + 25 === gem.x)) {
+      this.gemScore();
       gem = '';
+      console.log('gemScore ran');
+      this.updateScore();
     }
   }
 
@@ -73,7 +76,7 @@ class Player {
 
     if (lives === 0) {
       score = 0;
-      updateScore();
+      this.updateScore();
     }
   }
 
@@ -93,14 +96,33 @@ class Player {
     }
   }
 
+  updateScore() {
+    document.getElementById('score').innerHTML = score;
+  }
+
+  //Adds to score depending on color of gem.
+  gemScore() {
+    console.log(gem.sprite);
+    switch (gem.sprite) {
+      case 'images/gem-orange.png':
+        score += 50;
+        break;
+      case 'images/gem-blue.png':
+        score += 25;
+        break;
+      case 'images/gem-green.png':
+        score += 10;
+    }
+  }
+
 //Changes player position depending on which key is pressed.
   handleInput(key){
     if ((key === 'up') && (this.y >= 43)) {
       this.y -= 83;
 
       if (this.y <= 0){  //if reached the water, open win modal.
-        score +=100;
-        updateScore();
+        score += 100;
+        this.updateScore();
         this.restart();
         gem = new Gem();
         document.getElementById('win-game').addEventListener('click', function() {
@@ -139,10 +161,6 @@ class Gem {
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   }
-}
-
-function updateScore() {
-  document.getElementById('score').innerHTML = score;
 }
 
 let allEnemies = [];
