@@ -17,12 +17,10 @@ class Enemy {
 
       if (level < 5) {
         this.speed = Math.floor((Math.random() *300) +70);
-        console.log(this.speed +'slower');
       }
 
       if (level >= 5) {
-        this.speed = Math.floor((Math.random() *350) +90);
-        console.log(this.speed +'faster');
+        this.speed = Math.floor((Math.random() *350) +10);
       }
     }
   }
@@ -191,8 +189,29 @@ class Gem {
   }
 }
 
+class Boss extends Enemy {
+  constructor() {
+  	super();
+    this.sprite = 'images/boss-bug.png';
+    this.speed = Math.floor((Math.random() *400) +250);
+	}
+
+  update(dt) {
+    this.x += this.speed * dt;
+
+    if (this.x >= 505) {
+      console.log('meets condition');
+      boss = '';
+      setTimeout(function(){
+        boss = new Boss();
+}, 5000);
+    }
+  }
+}
+
 let allEnemies = [];
 const player = new Player();
+let boss = '';
 let gem = new Gem();
 let score = 0;
 let lives = 3;
@@ -203,6 +222,11 @@ const bug1 = new Enemy();
 const bug2 = new Enemy();
 const bug3 = new Enemy();
 allEnemies.push(bug1, bug2, bug3);
+
+if (level >= 2) {
+  console.log('BOSS BUG!');
+  boss = new Boss;
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
