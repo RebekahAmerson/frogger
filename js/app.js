@@ -44,7 +44,6 @@ class Player {
     if ((this.y + 72 === gem.y) && (this.x + 25 === gem.x)) {
       this.gemScore();
       gem = '';
-      console.log('gemScore ran');
       this.updateScore();
     }
   }
@@ -77,6 +76,14 @@ class Player {
     if (lives === 0) {
       score = 0;
       this.updateScore();
+      document.getElementById('modal').classList.remove('closed');
+      document.getElementById('modal-game-over').classList.replace('closed', 'open');
+      document.getElementById('game-over').addEventListener('click', function() {
+        document.getElementById('modal').classList.add('closed');
+        document.getElementById('modal-win').classList.replace('open', 'closed');
+      });
+      lives = 3;
+      this.updateLives();
     }
   }
 
@@ -84,6 +91,7 @@ class Player {
   updateLives() {
     if (lives === 3) {
       document.querySelectorAll('.heart')[2].classList.remove('closed');
+      document.querySelectorAll('.heart')[1].classList.remove('closed');
     }
 
     if (lives === 2) {
@@ -102,7 +110,6 @@ class Player {
 
   //Adds to score depending on color of gem.
   gemScore() {
-    console.log(gem.sprite);
     switch (gem.sprite) {
       case 'images/gem-orange.png':
         score += 50;
@@ -125,12 +132,12 @@ class Player {
         this.updateScore();
         this.restart();
         gem = new Gem();
+        document.getElementById('modal').classList.remove('closed');
+        document.getElementById('modal-win').classList.replace('closed', 'open');
         document.getElementById('win-game').addEventListener('click', function() {
           document.getElementById('modal').classList.add('closed');
           document.getElementById('modal-win').classList.replace('open', 'closed');
         });
-        document.getElementById('modal').classList.remove('closed');
-        document.getElementById('modal-win').classList.replace('closed', 'open');
       }
     }
 
