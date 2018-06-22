@@ -85,6 +85,11 @@ class Player {
     }
   }
 
+//Updates level number in the HUD and modal.
+  updateLevel() {
+    document.querySelectorAll('.level').forEach(function(levels) {levels.innerHTML = level});
+  }
+
 //Updates the HUD display of lives.
   updateLives() {
     if (lives === 3) {
@@ -129,14 +134,19 @@ class Player {
         score += 100;
         this.updateScore();
         level += 1;
-        console.log(level);
+        this.updateLevel();
         this.restart();
         gem = new Gem();
         document.getElementById('modal').classList.remove('closed');
         document.getElementById('modal-win').classList.replace('closed', 'open');
         document.getElementById('win-game').addEventListener('click', function() {
-          document.getElementById('modal').classList.add('closed');
           document.getElementById('modal-win').classList.replace('open', 'closed');
+          document.getElementById('modal-level').classList.replace('closed', 'open');
+          setTimeout(function() {
+          document.getElementById('modal-level').classList.replace('open', 'closed');
+          document.getElementById('modal').classList.add('closed');
+      }, 1000);
+
         });
       }
     }
