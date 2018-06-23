@@ -20,4 +20,4 @@ Classic arcade game where you desperately want to go for a swim but you must avo
 ## Additional Info and Credits
   This project was completed as part of the Front-End Nanodegree program from [Udacity](https://www.udacity.com/). All images and some starter code was provided.
 
-  This project also used the Google font, Orbitron, which can be found [here](https://fonts.googleapis.com).
+  This project also used the Google font, Orbitron, which can be found [here](https://fonts.google.com).
