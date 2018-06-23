@@ -1,6 +1,23 @@
-frontend-nanodegree-arcade-game
-===============================
+# Frogger-Type Game Project
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## Table of Contents
+* [How to Play](#How-to-Play)
+* [Additional Info](#Additional-Info-and-Credits)
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+Classic arcade game where you desperately want to go for a swim but you must avoid the icky bugs on the way.
+
+## How to Play
+-  Use the mouse to select your character and press okay.
+-  Use the up, down, left and right keys on the keyboard to move your character around the board.
+-  Avoid those nasty bugs, collect gems and make it to that lovely water.
+
+  CAUTION
+-  In level 5, the bugs get faster.
+-  In level 7, a new, faster bug will appear.
+
+  Good Luck!
+
+## Additional Info and Credits
+  This project was completed as part of the Front-End Nanodegree program from [Udacity](https://www.udacity.com/). All images and some starter code was provided.
+
+  This project also used the Google font, Orbitron, which can be found [here](https://fonts.googleapis.com).
