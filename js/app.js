@@ -1,16 +1,31 @@
+//DOM variables
+const modal = document.getElementById('modal');
+const modalBugHit = document.getElementById('modal-lose');
+const modalGameOver = document.getElementById('modal-game-over');
+const modalLevelWin = document.getElementById('modal-win');
+const modalStartGame = document.getElementById('modal-start')
+const modalLevelNumber = document.getElementById('modal-level');
+const buttonTryAgain = document.getElementById('lose-game');
+const buttonPlayAgain = document.getElementById('game-over');
+const buttonKeepPlaying = document.getElementById('win-game');
+const levelDom = document.querySelectorAll('.level');
+const heartDom = document.querySelectorAll('.heart');
+const scoreDom = document.getElementById('score');
+
+//Bugs.
 class Enemy {
   constructor() {
     const rows = [60, 143, 226];
     this.x = -100;
-    this.y = rows[Math.floor(Math.random() * rows.length)];;
+    this.y = rows[Math.floor(Math.random() * rows.length)]; //randomizes start rows.
     this.sprite = 'images/enemy-bug.png';
-    this.speed = Math.floor((Math.random() *300) +70);
+    this.speed = Math.floor((Math.random() *300) +70); //Randomizes speed.
   }
 
   update(dt) {
     this.x += this.speed * dt;
 
-    if (this.x >= 505) {
+    if (this.x >= 505) { //Off game board.
       const rows = [60, 143, 226];
       this.x = -100;
       this.y = rows[Math.floor(Math.random() * rows.length)];
@@ -20,7 +35,7 @@ class Enemy {
       }
 
       if (level >= 5) {
-        this.speed = Math.floor((Math.random() *350) +10);
+        this.speed = Math.floor((Math.random() *350) +100);
       }
     }
   }
@@ -30,108 +45,33 @@ class Enemy {
   }
 }
 
+//Player.
 class Player {
   constructor() {
     this.x = 202;
     this.y = 375;
-    this.sprite = 'images/char-boy.png';
+    this.sprite = 'images/char-boy.png'; //Default.
   }
 
 //Cycles through allEnemies array and compares coordinates to determine collision.
   update() {
     for (const bug of allEnemies) {
-      if ((this.y + 17 === bug.y) && (this.x - bug.x <= 50) && (this.x - bug.x >= -74)) {
-        this.restart();
-        this.bugHit();
-        gem = new Gem();
-      }
+      bugCollision(bug);
     }
+
     if ((this.y + 72 === gem.y) && (this.x + 25 === gem.x)) {
-      this.gemScore();
+      gemScore();
       gem = '';
-      this.updateScore();
+      updateScore();
+    }
+
+    if (boss) {
+      bugCollision(boss);
     }
   }
 
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-  }
-
-//Resets player position to start.
-  restart() {
-    this.x = 202;
-    this.y = 375;
-    gem = '';
-  }
-
-//Opens modal dependant on how many lives are left.
-  bugHit() {
-    lives -= 1;
-    this.updateLives();
-
-    if (lives > 0) {
-      document.getElementById('modal').classList.remove('closed');
-      document.getElementById('modal-lose').classList.replace('closed', 'open');
-      document.getElementById('lose-game').addEventListener('click', function() {
-        document.getElementById('modal').classList.add('closed');
-        document.getElementById('modal-lose').classList.replace('open', 'closed');
-      });
-    }
-
-    if (lives === 0) {
-      score = 0;
-      this.updateScore();
-      document.getElementById('modal').classList.remove('closed');
-      document.getElementById('modal-game-over').classList.replace('closed', 'open');
-      document.getElementById('game-over').addEventListener('click', function() {
-        document.getElementById('modal-game-over').classList.replace('open', 'closed');
-        document.getElementById('modal-start').classList.replace('closed', 'open');
-      });
-      lives = 3;
-      this.updateLives();
-      level = 1;
-      this.updateLevel();
-    }
-  }
-
-//Updates level number in the HUD and modal.
-  updateLevel() {
-    document.querySelectorAll('.level').forEach(function(levels) {levels.innerHTML = level});
-  }
-
-//Updates the HUD display of lives.
-  updateLives() {
-    if (lives === 3) {
-      document.querySelectorAll('.heart')[2].classList.remove('closed');
-      document.querySelectorAll('.heart')[1].classList.remove('closed');
-    }
-
-    if (lives === 2) {
-      document.querySelectorAll('.heart')[1].classList.remove('closed');
-      document.querySelectorAll('.heart')[2].classList.add('closed');
-    }
-
-    if (lives === 1) {
-      document.querySelectorAll('.heart')[1].classList.add('closed');
-    }
-  }
-
-  updateScore() {
-    document.getElementById('score').innerHTML = score;
-  }
-
-  //Adds to score depending on color of gem.
-  gemScore() {
-    switch (gem.sprite) {
-      case 'images/gem-orange.png':
-        score += 50;
-        break;
-      case 'images/gem-blue.png':
-        score += 25;
-        break;
-      case 'images/gem-green.png':
-        score += 10;
-    }
   }
 
 //Changes player position depending on which key is pressed.
@@ -141,22 +81,22 @@ class Player {
 
       if (this.y <= 0){  //if reached the water, open win modal.
         score += 100;
-        this.updateScore();
+        updateScore();
         level += 1;
-        this.updateLevel();
-        this.restart();
+        updateLevel();
+        restart();
         gem = new Gem();
-        document.getElementById('modal').classList.remove('closed');
-        document.getElementById('modal-win').classList.replace('closed', 'open');
-        document.getElementById('win-game').addEventListener('click', function() {
-          document.getElementById('modal-win').classList.replace('open', 'closed');
-          document.getElementById('modal-level').classList.replace('closed', 'open');
+        modal.classList.remove('closed');
+        modalLevelWin.classList.replace('closed', 'open');
+        buttonKeepPlaying.addEventListener('click', function() {
+          modalLevelWin.classList.replace('open', 'closed');
+          modalLevelNumber.classList.replace('closed', 'open');
           setTimeout(function() {
-          document.getElementById('modal-level').classList.replace('open', 'closed');
-          document.getElementById('modal').classList.add('closed');
-      }, 1000);
-
+            modalLevelNumber.classList.replace('open', 'closed');
+            modal.classList.add('closed');
+          }, 1000);
         });
+        levelCheck();
       }
     }
 
@@ -174,6 +114,7 @@ class Player {
   }
 }
 
+//Collectibles that give points.
 class Gem {
   constructor() {
     const rows = [115, 198, 281];
@@ -189,6 +130,7 @@ class Gem {
   }
 }
 
+//BOSS BUG!
 class Boss extends Enemy {
   constructor() {
   	super();
@@ -200,15 +142,15 @@ class Boss extends Enemy {
     this.x += this.speed * dt;
 
     if (this.x >= 505) {
-      console.log('meets condition');
       boss = '';
       setTimeout(function(){
         boss = new Boss();
-}, 5000);
+      }, 5000);
     }
   }
 }
 
+//Game pieces.
 let allEnemies = [];
 const player = new Player();
 let boss = '';
@@ -223,9 +165,99 @@ const bug2 = new Enemy();
 const bug3 = new Enemy();
 allEnemies.push(bug1, bug2, bug3);
 
-if (level >= 2) {
-  console.log('BOSS BUG!');
-  boss = new Boss;
+//Functions.
+//Create BOSS BUG from level 7 onward.
+function levelCheck() {
+  if (level >= 7) {
+    boss = new Boss;
+  }
+}
+
+//Adds to score depending on color of gem.
+function gemScore() {
+  switch (gem.sprite) {
+    case 'images/gem-orange.png':
+      score += 50;
+      break;
+    case 'images/gem-blue.png':
+      score += 25;
+      break;
+    case 'images/gem-green.png':
+      score += 10;
+  }
+}
+
+//Opens modal dependant on how many lives are left.
+function bugHit() {
+  lives -= 1;
+  updateLives();
+
+  if (lives > 0) {
+    modal.classList.remove('closed');
+    modalBugHit.classList.replace('closed', 'open');
+    buttonTryAgain.addEventListener('click', function() {
+    modal.classList.add('closed');
+      modalBugHit.classList.replace('open', 'closed');
+    });
+  }
+
+  if (lives === 0) {
+    score = 0;
+    updateScore();
+    modal.classList.remove('closed');
+    modalGameOver.classList.replace('closed', 'open');
+    buttonPlayAgain.addEventListener('click', function() {
+      modalGameOver.classList.replace('open', 'closed');
+      modalStartGame.classList.replace('closed', 'open');
+    });
+    lives = 3;
+    updateLives();
+    level = 1;
+    updateLevel();
+  }
+}
+
+//Updates score on the HUD.
+function updateScore() {
+    scoreDom.innerHTML = score;
+  }
+
+//Updates the HUD display of lives.
+function updateLives() {
+  if (lives === 3) {
+    heartDom[2].classList.remove('closed');
+    heartDom[1].classList.remove('closed');
+  }
+
+  if (lives === 2) {
+    heartDom[1].classList.remove('closed');
+    heartDom[2].classList.add('closed');
+  }
+
+  if (lives === 1) {
+    heartDom[1].classList.add('closed');
+  }
+}
+
+//Updates level number in the HUD and modal.
+function updateLevel() {
+  levelDom.forEach(function(levels) {levels.innerHTML = level});
+}
+
+//Checks for collisions with Enemy or Boss elements.
+function bugCollision(bug) {
+  if ((player.y + 17 === bug.y) && (player.x - bug.x <= 50) && (player.x - bug.x >= -74)) {
+    restart();
+    bugHit();
+    gem = new Gem();
+  }
+}
+
+//Resets player position to start.
+function restart() {
+  player.x = 202;
+  player.y = 375;
+  gem = '';
 }
 
 // This listens for key presses and sends the keys to your
