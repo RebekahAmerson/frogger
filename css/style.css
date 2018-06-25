@@ -4,12 +4,13 @@ body {
 }
 
 .hud {
+  margin-top: 53px;
   text-align: left;
   color: white;
   z-index: 1;
   width: 505px;
+  height: 606px;
   position: absolute;
-  top: 11%;
   left: 50%;
   transform: translate(-49%, 0%);
 }
