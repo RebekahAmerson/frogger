@@ -217,6 +217,7 @@ function bugHit() {
     level = 1;
     updateLevel();
     boss = '';
+    restart();
   }
 }
 
