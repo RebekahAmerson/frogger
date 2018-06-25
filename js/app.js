@@ -1,3 +1,5 @@
+'use strict';
+
 //DOM variables
 const modal = document.getElementById('modal');
 const modalBugHit = document.getElementById('modal-lose');
@@ -142,10 +144,10 @@ class Boss extends Enemy {
     this.x += this.speed * dt;
 
     if (this.x >= 505) {
-      boss = '';
-      setTimeout(function(){
-        boss = new Boss();
-      }, 5000);
+      const rows = [60, 143, 226];
+      this.x = -1500; //way off board to give appearance to wait before returning.
+      this.y = rows[Math.floor(Math.random() * rows.length)]; //randomizes start rows.
+      this.speed = Math.floor((Math.random() *400) +250);
     }
   }
 }
@@ -168,7 +170,7 @@ allEnemies.push(bug1, bug2, bug3);
 //Functions.
 //Create BOSS BUG from level 7 onward.
 function levelCheck() {
-  if (level >= 7) {
+  if (level === 7) {
     boss = new Boss();
   }
 }
