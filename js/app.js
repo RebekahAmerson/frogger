@@ -49,7 +49,7 @@ class Enemy {
 class Player {
   constructor() {
     this.x = 202;
-    this.y = 375;
+    this.y = 395;
     this.sprite = 'images/char-boy.png'; //Default.
   }
 
@@ -59,7 +59,7 @@ class Player {
       bugCollision(bug);
     }
 
-    if ((this.y + 72 === gem.y) && (this.x + 25 === gem.x)) {
+    if ((this.y + 52 === gem.y) && (this.x + 25 === gem.x)) {
       gemScore();
       gem = '';
       updateScore();
@@ -100,7 +100,7 @@ class Player {
       }
     }
 
-    if ((key === 'down') && (this.y <= 292)) {
+    if ((key === 'down') && (this.y <= 312)) {
       this.y += 83;
     }
 
@@ -246,7 +246,7 @@ function updateLevel() {
 
 //Checks for collisions with Enemy or Boss elements.
 function bugCollision(bug) {
-  if ((player.y + 17 === bug.y) && (player.x - bug.x <= 50) && (player.x - bug.x >= -74)) {
+  if ((player.y - 3 === bug.y) && (player.x - bug.x <= 50) && (player.x - bug.x >= -74)) {
     restart();
     bugHit();
     gem = new Gem();
@@ -256,7 +256,7 @@ function bugCollision(bug) {
 //Resets player position to start.
 function restart() {
   player.x = 202;
-  player.y = 375;
+  player.y = 395;
   gem = '';
 }
 
