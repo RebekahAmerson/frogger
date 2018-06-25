@@ -124,7 +124,7 @@ var Engine = (function(global) {
             row, col;
 
         // Before drawing, clear existing canvas
-        ctx.clearRect(0,0,canvas.width,canvas.height)
+        ctx.clearRect(0,0,canvas.width,canvas.height);
 
         /* Loop through the number of rows and columns we've defined above
          * and, using the rowImages array, draw the correct image for that
@@ -204,7 +204,7 @@ var Engine = (function(global) {
       player.sprite = document.querySelector('input[type = radio]:checked').value;
       document.getElementById('modal').classList.add('closed');
       document.getElementById('modal-start').classList.replace('open', 'closed');
-    })
+    });
 
     /* Assign the canvas' context object to the global variable (the window
      * object when run in a browser) so that developers can use it more easily

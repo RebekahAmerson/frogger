@@ -3,7 +3,7 @@ const modal = document.getElementById('modal');
 const modalBugHit = document.getElementById('modal-lose');
 const modalGameOver = document.getElementById('modal-game-over');
 const modalLevelWin = document.getElementById('modal-win');
-const modalStartGame = document.getElementById('modal-start')
+const modalStartGame = document.getElementById('modal-start');
 const modalLevelNumber = document.getElementById('modal-level');
 const buttonTryAgain = document.getElementById('lose-game');
 const buttonPlayAgain = document.getElementById('game-over');
@@ -118,7 +118,7 @@ class Player {
 class Gem {
   constructor() {
     const rows = [115, 198, 281];
-    const columns = [25, 126, 227, 328, 429]
+    const columns = [25, 126, 227, 328, 429];
     const gems = ['images/gem-blue.png', 'images/gem-green.png', 'images/gem-orange.png'];
     this.y = rows[Math.floor(Math.random() * rows.length)];
     this.x = columns[Math.floor(Math.random() * columns.length)];
@@ -169,7 +169,7 @@ allEnemies.push(bug1, bug2, bug3);
 //Create BOSS BUG from level 7 onward.
 function levelCheck() {
   if (level >= 7) {
-    boss = new Boss;
+    boss = new Boss();
   }
 }
 
@@ -241,7 +241,7 @@ function updateLives() {
 
 //Updates level number in the HUD and modal.
 function updateLevel() {
-  levelDom.forEach(function(levels) {levels.innerHTML = level});
+  levelDom.forEach(function(levels) {levels.innerHTML = level;});
 }
 
 //Checks for collisions with Enemy or Boss elements.
