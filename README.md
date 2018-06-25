@@ -1,10 +1,13 @@
 # Frogger-Type Game Project
 
 ## Table of Contents
+* [To Load](#To-Load)
 * [How to Play](#How-to-Play)
 * [Additional Info](#Additional-Info-and-Credits)
 
 Classic arcade game where you desperately want to go for a swim but you must avoid the icky bugs on the way.
+## To Load
+  Simply double click the index.html file to start the fun.
 
 ## How to Play
 -  Use the mouse to select your character and press okay.
