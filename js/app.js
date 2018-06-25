@@ -214,6 +214,7 @@ function bugHit() {
     updateLives();
     level = 1;
     updateLevel();
+    boss = '';
   }
 }
 
